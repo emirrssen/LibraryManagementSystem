@@ -10,3 +10,10 @@ C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\Libra
 C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\LibraryManagementSystem\Business\obj\Debug\net7.0\refint\Business.dll
 C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\LibraryManagementSystem\Business\obj\Debug\net7.0\Business.pdb
 C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\LibraryManagementSystem\Business\obj\Debug\net7.0\ref\Business.dll
+C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\LibraryManagementSystem\Business\bin\Debug\net7.0\Core.dll
+C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\LibraryManagementSystem\Business\bin\Debug\net7.0\DataAccess.dll
+C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\LibraryManagementSystem\Business\bin\Debug\net7.0\Entity.dll
+C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\LibraryManagementSystem\Business\bin\Debug\net7.0\Core.pdb
+C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\LibraryManagementSystem\Business\bin\Debug\net7.0\DataAccess.pdb
+C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\LibraryManagementSystem\Business\bin\Debug\net7.0\Entity.pdb
+C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\LibraryManagementSystem\Business\obj\Debug\net7.0\Business.csproj.CopyComplete
