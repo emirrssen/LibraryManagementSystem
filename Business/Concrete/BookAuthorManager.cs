@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules;
+using Core.Aspects.Autofac;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entity.Concrete;
@@ -20,18 +22,21 @@ namespace Business.Concrete
             _bookAuthorDal = bookAuthorDal;
         }
 
+        [ValidationAspect(typeof(BookAuthorValidator))]
         public IResult Add(BookAuthor bookAuthor)
         {
             _bookAuthorDal.Add(bookAuthor);
             return new SuccessResult(Messages.BookAuthorAdded);
         }
 
+        [ValidationAspect(typeof(BookAuthorValidator))]
         public IResult Delete(BookAuthor bookAuthor)
         {
             _bookAuthorDal.Delete(bookAuthor);
             return new SuccessResult(Messages.BookAuthorDeleted);
         }
 
+        [ValidationAspect(typeof(BookAuthorValidator))]
         public IResult Update(BookAuthor bookAuthor)
         {
             _bookAuthorDal.Update(bookAuthor);

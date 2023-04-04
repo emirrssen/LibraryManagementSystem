@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules;
+using Core.Aspects.Autofac;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entity.Concrete;
@@ -19,18 +21,22 @@ namespace Business.Concrete
         {
             _borrowDal = borrowDal;
         }
+
+        [ValidationAspect(typeof(BorrowValidator))]
         public IResult Add(Borrow borrow)
         {
             _borrowDal.Add(borrow);
             return new SuccessResult(Messages.BorrowAdded);
         }
 
+        [ValidationAspect(typeof(BorrowValidator))]
         public IResult Delete(Borrow borrow)
         {
             _borrowDal.Delete(borrow);
             return new SuccessResult(Messages.BorrowDeleted);
         }
 
+        [ValidationAspect(typeof(BorrowValidator))]
         public IResult Update(Borrow borrow)
         {
             _borrowDal.Update(borrow);

@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules;
+using Core.Aspects.Autofac;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entity.Concrete;
@@ -20,18 +22,21 @@ namespace Business.Concrete
             _departmentDal = departmentDal;
         }
 
+        [ValidationAspect(typeof(DepartmentValidator))]
         public IResult Add(Department department)
         {
             _departmentDal.Add(department);
             return new SuccessResult(Messages.DepartmentAdded);
         }
 
+        [ValidationAspect(typeof(DepartmentValidator))]
         public IResult Delete(Department department)
         {
             _departmentDal.Delete(department);
             return new SuccessResult(Messages.DepartmentDeleted);
         }
 
+        [ValidationAspect(typeof(DepartmentValidator))]
         public IResult Update(Department department)
         {
             _departmentDal.Update(department);
