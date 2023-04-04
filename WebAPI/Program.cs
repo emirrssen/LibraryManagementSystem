@@ -1,3 +1,4 @@
+using Core.Extensions;
 using WebAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,5 +25,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.AddGlobalErrorHandler();
 
 app.Run();
