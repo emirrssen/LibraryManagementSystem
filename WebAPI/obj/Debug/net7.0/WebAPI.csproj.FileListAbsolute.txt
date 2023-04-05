@@ -82,3 +82,4 @@ C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\Libra
 C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\LibraryManagementSystem\WebAPI\bin\Debug\net7.0\Autofac.Extras.DynamicProxy.dll
 C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\LibraryManagementSystem\WebAPI\bin\Debug\net7.0\Castle.Core.dll
 C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\LibraryManagementSystem\WebAPI\bin\Debug\net7.0\FluentValidation.dll
+C:\Users\emirr\OneDrive\Belgeler\My Projects\Financial Stability Portfolio\LibraryManagementSystem\WebAPI\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Binder.dll
