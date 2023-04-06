@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Core.Aspects.Autofac.Transaction;
 using Core.Entity.Concrete;
 using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
@@ -25,6 +26,7 @@ namespace Business.Concrete
 
         [SecuredOperation("manager")]
         [SecuredOperation("employee")]
+        [TransactionScopeAspect]
         public IResult Add(User user)
         {
             _userDal.Add(user);
@@ -50,6 +52,7 @@ namespace Business.Concrete
         [SecuredOperation("manager")]
         [SecuredOperation("employee")]
         [SecuredOperation("user")]
+        [TransactionScopeAspect]
         public IResult UpdateProfile(UserForUpdateDto userForUpdate)
         {
             var userToUpdate = GetByMail(userForUpdate.Email).Data;

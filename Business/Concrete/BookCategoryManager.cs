@@ -3,6 +3,8 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules;
 using Core.Aspects.Autofac;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -26,6 +28,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(BookCategoryValidator))]
         [SecuredOperation("employee")]
+        [TransactionScopeAspect]
         public IResult Add(BookCategory bookCategory)
         {
             _bookCategoryDal.Add(bookCategory);
@@ -34,6 +37,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(BookCategoryValidator))]
         [SecuredOperation("employee")]
+        [TransactionScopeAspect]
         public IResult Delete(BookCategory bookCategory)
         {
             _bookCategoryDal.Delete(bookCategory);
@@ -42,6 +46,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(BookCategoryValidator))]
         [SecuredOperation("employee")]
+        [TransactionScopeAspect]
         public IResult Update(BookCategory bookCategory)
         {
             _bookCategoryDal.Update(bookCategory);
@@ -50,6 +55,7 @@ namespace Business.Concrete
 
         [SecuredOperation("employee")]
         [SecuredOperation("user")]
+        [CacheAspect]
         public IDataResult<List<BookCategory>> GetAll()
         {
             var result = _bookCategoryDal.GetAll();
@@ -58,6 +64,7 @@ namespace Business.Concrete
 
         [SecuredOperation("employee")]
         [SecuredOperation("user")]
+        [CacheAspect]
         public IDataResult<BookCategory> GetById(int bookCategoryId)
         {
             var result = _bookCategoryDal.Get(x => x.Id == bookCategoryId);
