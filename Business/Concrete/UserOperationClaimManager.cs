@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Entity.Concrete;
 using Core.Utilities.Results;
@@ -20,12 +21,14 @@ namespace Business.Concrete
             _userOperationClaimDal = userOperationClaimDal;
         }
 
+        [SecuredOperation("manager")]
         public IResult AddClaim(UserOperationClaim userOperationClaim)
         {
             _userOperationClaimDal.Add(userOperationClaim);
             return new SuccessResult(Messages.ClaimAdded);
         }
 
+        [SecuredOperation("manager")]
         public IResult AddDefaultClaim(User user)
         {
             var recordToAdd = new UserOperationClaim { UserId = user.Id, OperationClaimId = 1 };

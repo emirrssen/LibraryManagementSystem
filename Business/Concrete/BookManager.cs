@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules;
 using Core.Aspects.Autofac;
@@ -23,6 +24,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(BookValidator))]
+        [SecuredOperation("employee")]
         public IResult Add(Book book)
         {
             _bookDal.Add(book);
@@ -30,6 +32,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(BookValidator))]
+        [SecuredOperation("employee")]
         public IResult Delete(Book book)
         {
             _bookDal.Delete(book);
@@ -37,18 +40,23 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(BookValidator))]
+        [SecuredOperation("employee")]
         public IResult Update(Book book)
         {
             _bookDal.Update(book);
             return new SuccessResult(Messages.BookUpdated);
         }
 
+        [SecuredOperation("employee")]
+        [SecuredOperation("user")]
         public IDataResult<List<Book>> GetAll()
         {
             var result = _bookDal.GetAll();
             return new SuccessDataResult<List<Book>>(result, Messages.BooksListed);
         }
 
+        [SecuredOperation("employee")]
+        [SecuredOperation("user")]
         public IDataResult<Book> GetById(int bookId)
         {
             var result = _bookDal.Get(x => x.Id == bookId);

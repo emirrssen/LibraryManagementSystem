@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Entity.Concrete;
 using Core.Utilities.Results;
@@ -22,24 +23,33 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
+        [SecuredOperation("manager")]
+        [SecuredOperation("employee")]
         public IResult Add(User user)
         {
             _userDal.Add(user);
             return new SuccessResult(Messages.UserAdded);
         }
 
+        [SecuredOperation("manager")]
+        [SecuredOperation("employee")]
         public IDataResult<User> GetByMail(string email)
         {
             var result = _userDal.Get(x => x.Email == email);
             return new SuccessDataResult<User>(result, Messages.UserListed);
         }
 
+        [SecuredOperation("manager")]
+        [SecuredOperation("employee")]
         public IDataResult<List<OperationClaim>> GetClaims(User user)
         {
             var result = _userDal.GetClaims(user);
             return new SuccessDataResult<List<OperationClaim>>(result);
         }
 
+        [SecuredOperation("manager")]
+        [SecuredOperation("employee")]
+        [SecuredOperation("user")]
         public IResult UpdateProfile(UserForUpdateDto userForUpdate)
         {
             var userToUpdate = GetByMail(userForUpdate.Email).Data;

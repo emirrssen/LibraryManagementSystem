@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules;
 using Core.Aspects.Autofac;
@@ -23,6 +24,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(AuthorValidator))]
+        [SecuredOperation("employee")]
         public IResult Add(Author author)
         {
             _authorDal.Add(author);
@@ -30,6 +32,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(AuthorValidator))]
+        [SecuredOperation("employee")]
         public IResult Delete(Author author)
         {
             _authorDal.Delete(author);
@@ -37,18 +40,23 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(AuthorValidator))]
+        [SecuredOperation("employee")]
         public IResult Update(Author author)
         {
             _authorDal.Update(author);
             return new SuccessResult(Messages.AuthorUpdated);
         }
 
+        [SecuredOperation("employee")]
+        [SecuredOperation("user")]
         public IDataResult<List<Author>> GetAll()
         {
             var result = _authorDal.GetAll();
             return new SuccessDataResult<List<Author>>(result, Messages.AuthorsListed);
         }
 
+        [SecuredOperation("employee")]
+        [SecuredOperation("user")]
         public IDataResult<Author> GetById(int authorId)
         {
             var result = _authorDal.Get(x => x.Id == authorId);

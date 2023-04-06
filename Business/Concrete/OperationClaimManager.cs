@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Entity.Concrete;
 using Core.Utilities.Results;
@@ -20,30 +21,35 @@ namespace Business.Concrete
             _operationClaimDal = operationClaimDal;
         }
 
+        [SecuredOperation("manager")]
         public IResult Add(OperationClaim operationClaim)
         {
             _operationClaimDal.Add(operationClaim);
             return new SuccessResult(Messages.OperationClaimAdded);
         }
 
+        [SecuredOperation("manager")]
         public IResult Delete(OperationClaim operationClaim)
         {
             _operationClaimDal.Delete(operationClaim);
             return new SuccessResult(Messages.OperationClaimDeleted);
         }
 
+        [SecuredOperation("manager")]
         public IResult Update(OperationClaim operationClaim)
         {
             _operationClaimDal.Update(operationClaim);
             return new SuccessResult(Messages.OperationClaimUpdated);
         }
 
+        [SecuredOperation("manager")]
         public IDataResult<List<OperationClaim>> GetAll()
         {
             var result = _operationClaimDal.GetAll();
             return new SuccessDataResult<List<OperationClaim>>(result, Messages.OperationClaimsListed);
         }
 
+        [SecuredOperation("manager")]
         public IDataResult<OperationClaim> GetById(int operationClaimId)
         {
             var result = _operationClaimDal.Get(x => x.Id == operationClaimId);

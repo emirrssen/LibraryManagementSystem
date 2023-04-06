@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules;
 using Core.Aspects.Autofac;
@@ -23,6 +24,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(DepartmentValidator))]
+        [SecuredOperation("director")]
         public IResult Add(Department department)
         {
             _departmentDal.Add(department);
@@ -30,6 +32,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(DepartmentValidator))]
+        [SecuredOperation("manager")]
         public IResult Delete(Department department)
         {
             _departmentDal.Delete(department);
@@ -37,18 +40,23 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(DepartmentValidator))]
+        [SecuredOperation("manager")]
         public IResult Update(Department department)
         {
             _departmentDal.Update(department);
             return new SuccessResult(Messages.DepartmentUpdated);
         }
 
+        [SecuredOperation("manager")]
+        [SecuredOperation("employee")]
         public IDataResult<List<Department>> GetAll()
         {
             var result = _departmentDal.GetAll();
             return new SuccessDataResult<List<Department>>(result, Messages.DepartmentsListed);
         }
 
+        [SecuredOperation("manager")]
+        [SecuredOperation("employee")]
         public IDataResult<Department> GetById(int departmentId)
         {
             var result = _departmentDal.Get(x => x.Id == departmentId);

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules;
 using Core.Aspects.Autofac;
@@ -23,6 +24,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CategoryValidator))]
+        [SecuredOperation("employee")]
         public IResult Add(Category category)
         {
             _categoryDal.Add(category);
@@ -30,6 +32,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CategoryValidator))]
+        [SecuredOperation("employee")]
         public IResult Delete(Category category)
         {
             _categoryDal.Delete(category);
@@ -37,18 +40,23 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CategoryValidator))]
+        [SecuredOperation("employee")]
         public IResult Update(Category category)
         {
             _categoryDal.Update(category);
             return new SuccessResult(Messages.CategoryUpdated);
         }
 
+        [SecuredOperation("employee")]
+        [SecuredOperation("user")]
         public IDataResult<List<Category>> GetAll()
         {
             var result = _categoryDal.GetAll();
             return new SuccessDataResult<List<Category>>(result, Messages.CategoriesListed);
         }
 
+        [SecuredOperation("employee")]
+        [SecuredOperation("user")]
         public IDataResult<Category> GetById(int categoryId)
         {
             var result = _categoryDal.Get(x => x.Id == categoryId);
