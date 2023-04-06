@@ -9,6 +9,7 @@ namespace Entity.Concrete
 {
     public class Student : IEntity
     {
+        public int Id { get; set; }
         public int UserId { get; set; }
         public string SchoolName { get; set; }
     }

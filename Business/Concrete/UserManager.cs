@@ -2,7 +2,9 @@
 using Business.Constants;
 using Core.Entity.Concrete;
 using Core.Utilities.Results;
+using Core.Utilities.Security.Hashing;
 using DataAccess.Abstract;
+using Entity.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +38,25 @@ namespace Business.Concrete
         {
             var result = _userDal.GetClaims(user);
             return new SuccessDataResult<List<OperationClaim>>(result);
+        }
+
+        public IResult UpdateProfile(UserForUpdateDto userForUpdate)
+        {
+            var userToUpdate = GetByMail(userForUpdate.Email).Data;
+            var checkedPassword = HashingHelper.VerifyPasswordHash(userForUpdate.Password, userToUpdate.PasswordHash, userToUpdate.PasswordSalt);
+
+            if (!checkedPassword)
+            {
+                byte[] passwordHash, passwordSalt;
+                HashingHelper.CreatePasswordHash(userForUpdate.Password, out passwordHash, out passwordSalt);
+                userToUpdate.PasswordHash = passwordHash;
+                userToUpdate.PasswordSalt = passwordSalt;
+                _userDal.Update(userToUpdate);
+
+                return new SuccessResult(Messages.UserUpdatedSuccessfully);
+            }
+
+            return new ErrorResult(Messages.FieldsCannotBeSame);
         }
     }
 }

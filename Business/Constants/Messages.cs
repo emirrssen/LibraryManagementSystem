@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entity.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -77,5 +78,14 @@ namespace Business.Constants
         public static string UserAdded = "User added successfully!";
         public static string UserListed = "User listed successfully!";
         public static string ClaimAdded = "Claim added successfully!";
+
+        public static string UserUpdatedSuccessfully = "User updated successfully!";
+        public static string FieldsCannotBeSame = "Fields cannot be same!";
+        public static string AccessTokenCreated = "Access token created successfully!";
+        public static string UserAlreadyExists = "User already exists!";
+        public static string UserRegistered = "User registered successfully!";
+        public static string UserNotFound = "User not found!";
+        public static string PasswordError = "Password incorrect!";
+        public static string SuccessfulLogin = "Successfull login!";
     }
 }

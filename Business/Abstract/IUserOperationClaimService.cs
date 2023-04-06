@@ -11,6 +11,6 @@ namespace Business.Abstract
     public interface IUserOperationClaimService
     {
         IResult AddClaim(UserOperationClaim userOperationClaim);
-        IResult AddDefaulClaim(User user);
+        IResult AddDefaultClaim(User user);
     }
 }

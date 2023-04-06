@@ -26,7 +26,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ClaimAdded);
         }
 
-        public IResult AddDefaulClaim(User user)
+        public IResult AddDefaultClaim(User user)
         {
             var recordToAdd = new UserOperationClaim { UserId = user.Id, OperationClaimId = 1 };
             _userOperationClaimDal.Add(recordToAdd);

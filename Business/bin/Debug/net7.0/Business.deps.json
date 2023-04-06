@@ -14,7 +14,8 @@
           "Core": "1.0.0",
           "DataAccess": "1.0.0",
           "Entity": "1.0.0",
-          "FluentValidation": "11.5.1"
+          "FluentValidation": "11.5.1",
+          "Microsoft.Extensions.Configuration.Binder": "7.0.4"
         },
         "runtime": {
           "Business.dll": {}

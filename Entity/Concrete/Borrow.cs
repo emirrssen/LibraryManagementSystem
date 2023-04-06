@@ -10,6 +10,7 @@ namespace Entity.Concrete
     public class Borrow : IEntity
     {
         public int Id { get; set; }
+        public int PersonelId { get; set; }
         public int UserId { get; set; }
         public int BookId { get; set; }
         public DateTime BorrowDate { get; set; }
