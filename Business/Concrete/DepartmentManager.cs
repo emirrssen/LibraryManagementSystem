@@ -4,6 +4,7 @@ using Business.Constants;
 using Business.ValidationRules;
 using Core.Aspects.Autofac;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -27,6 +28,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(DepartmentValidator))]
         [SecuredOperation("director")]
+        [TransactionScopeAspect]
         public IResult Add(Department department)
         {
             _departmentDal.Add(department);
@@ -35,6 +37,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(DepartmentValidator))]
         [SecuredOperation("manager")]
+        [TransactionScopeAspect]
         public IResult Delete(Department department)
         {
             _departmentDal.Delete(department);
@@ -43,6 +46,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(DepartmentValidator))]
         [SecuredOperation("manager")]
+        [TransactionScopeAspect]
         public IResult Update(Department department)
         {
             _departmentDal.Update(department);

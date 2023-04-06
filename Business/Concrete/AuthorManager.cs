@@ -4,6 +4,7 @@ using Business.Constants;
 using Business.ValidationRules;
 using Core.Aspects.Autofac;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -27,6 +28,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(AuthorValidator))]
         [SecuredOperation("employee")]
+        [TransactionScopeAspect]
         public IResult Add(Author author)
         {
             _authorDal.Add(author);
@@ -35,6 +37,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(AuthorValidator))]
         [SecuredOperation("employee")]
+        [TransactionScopeAspect]
         public IResult Delete(Author author)
         {
             _authorDal.Delete(author);
@@ -43,6 +46,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(AuthorValidator))]
         [SecuredOperation("employee")]
+        [TransactionScopeAspect]
         public IResult Update(Author author)
         {
             _authorDal.Update(author);

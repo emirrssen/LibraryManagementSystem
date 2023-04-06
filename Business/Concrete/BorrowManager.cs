@@ -4,6 +4,7 @@ using Business.Constants;
 using Business.ValidationRules;
 using Core.Aspects.Autofac;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -27,6 +28,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(BorrowValidator))]
         [SecuredOperation("employee")]
+        [TransactionScopeAspect]
         public IResult Add(Borrow borrow)
         {
             _borrowDal.Add(borrow);
@@ -35,6 +37,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(BorrowValidator))]
         [SecuredOperation("employee")]
+        [TransactionScopeAspect]
         public IResult Delete(Borrow borrow)
         {
             _borrowDal.Delete(borrow);
@@ -43,6 +46,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(BorrowValidator))]
         [SecuredOperation("employee")]
+        [TransactionScopeAspect]
         public IResult Update(Borrow borrow)
         {
             _borrowDal.Update(borrow);

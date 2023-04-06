@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Core.Aspects.Autofac.Transaction;
 using Core.Entity.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -22,6 +23,7 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("manager")]
+        [TransactionScopeAspect]
         public IResult Add(OperationClaim operationClaim)
         {
             _operationClaimDal.Add(operationClaim);
@@ -29,6 +31,7 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("manager")]
+        [TransactionScopeAspect]
         public IResult Delete(OperationClaim operationClaim)
         {
             _operationClaimDal.Delete(operationClaim);
@@ -36,6 +39,7 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("manager")]
+        [TransactionScopeAspect]
         public IResult Update(OperationClaim operationClaim)
         {
             _operationClaimDal.Update(operationClaim);

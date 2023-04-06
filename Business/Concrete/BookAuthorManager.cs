@@ -3,6 +3,8 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules;
 using Core.Aspects.Autofac;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -26,6 +28,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(BookAuthorValidator))]
         [SecuredOperation("employee")]
+        [TransactionScopeAspect]
         public IResult Add(BookAuthor bookAuthor)
         {
             _bookAuthorDal.Add(bookAuthor);
@@ -34,6 +37,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(BookAuthorValidator))]
         [SecuredOperation("employee")]
+        [TransactionScopeAspect]
         public IResult Delete(BookAuthor bookAuthor)
         {
             _bookAuthorDal.Delete(bookAuthor);
@@ -42,6 +46,7 @@ namespace Business.Concrete
 
         [ValidationAspect(typeof(BookAuthorValidator))]
         [SecuredOperation("employee")]
+        [TransactionScopeAspect]
         public IResult Update(BookAuthor bookAuthor)
         {
             _bookAuthorDal.Update(bookAuthor);
@@ -50,6 +55,7 @@ namespace Business.Concrete
 
         [SecuredOperation("employee")]
         [SecuredOperation("user")]
+        [CacheAspect]
         public IDataResult<List<BookAuthor>> GetAll()
         {
             var result = _bookAuthorDal.GetAll();
@@ -58,6 +64,7 @@ namespace Business.Concrete
 
         [SecuredOperation("employee")]
         [SecuredOperation("user")]
+        [CacheAspect]
         public IDataResult<BookAuthor> GetById(int bookAuthorId)
         {
             var result = _bookAuthorDal.Get(x => x.Id == bookAuthorId);

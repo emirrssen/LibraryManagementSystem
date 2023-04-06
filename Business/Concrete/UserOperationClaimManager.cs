@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Core.Aspects.Autofac.Transaction;
 using Core.Entity.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -22,6 +23,7 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("manager")]
+        [TransactionScopeAspect]
         public IResult AddClaim(UserOperationClaim userOperationClaim)
         {
             _userOperationClaimDal.Add(userOperationClaim);
@@ -29,6 +31,7 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("manager")]
+        [TransactionScopeAspect]
         public IResult AddDefaultClaim(User user)
         {
             var recordToAdd = new UserOperationClaim { UserId = user.Id, OperationClaimId = 1 };
