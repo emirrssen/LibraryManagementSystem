@@ -3,6 +3,8 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules;
 using Core.Aspects.Autofac;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entity.Concrete;
@@ -49,6 +51,7 @@ namespace Business.Concrete
 
         [SecuredOperation("employee")]
         [SecuredOperation("user")]
+        [CacheAspect]
         public IDataResult<List<Category>> GetAll()
         {
             var result = _categoryDal.GetAll();
@@ -57,6 +60,7 @@ namespace Business.Concrete
 
         [SecuredOperation("employee")]
         [SecuredOperation("user")]
+        [CacheAspect]
         public IDataResult<Category> GetById(int categoryId)
         {
             var result = _categoryDal.Get(x => x.Id == categoryId);
